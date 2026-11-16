@@ -14,6 +14,14 @@ find_package(std_msgs REQUIRED)
 add_executable(talker src/publisher1.cpp)
 ament_target_dependencies(talker rclcpp std_msgs)
 
+add_executable(listener src/subscriber1.cpp)
+ament_target_dependencies(listener rclcpp std_msgs)
+
+install(TARGETS
+  talker
+  listener
+  DESTINATION lib/${PROJECT_NAME})
+
 install(TARGETS
   talker
   DESTINATION lib/${PROJECT_NAME})
