@@ -3,14 +3,19 @@
 <package format="3">
   <name>pubsub</name>
   <version>0.0.0</version>
-  <description>TODO: Package description</description>
-  <maintainer email="paky@todo.todo">paky</maintainer>
+  <description>This package provides a simple publisher/subscriber program where a node publishes a sine wave with 
+    Gaussian noise on a topic. 
+    When the subscribers receive the signal, they first integrate and differentiate it, and then publish the results.</description>
+  <maintainer email="pasquale.rendina.ae@gmail.com">pRendina</maintainer>
   <license>Apache-2.0</license>
 
   <buildtool_depend>ament_cmake</buildtool_depend>
 
   <test_depend>ament_lint_auto</test_depend>
   <test_depend>ament_lint_common</test_depend>
+  
+  <depend>rclcpp</depend>
+  <depend>std_msgs</depend>
 
   <export>
     <build_type>ament_cmake</build_type>
