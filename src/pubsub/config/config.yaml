@@ -1,0 +1,4 @@
+sine_publisher:
+  ros__parameters:
+    frequency: 5.0
+    amplitude: 2.0

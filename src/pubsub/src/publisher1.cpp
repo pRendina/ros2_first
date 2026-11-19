@@ -20,6 +20,12 @@
             {
                 publisher_ = this -> create_publisher<std_msgs::msg::Float64>("signal", 10);
 
+                this -> declare_parameter("frequency", 1.0);
+                this -> declare_parameter("amplitude", 1.0);
+
+                frequency_ = this -> get_parameter("frequency").as_double();
+                amplitude_ = this -> get_parameter("amplitude").as_double();
+
                 timer_ = this -> create_wall_timer(10ms, std::bind(&SinePublisher::timer_callback, this));
             }
 
@@ -31,16 +37,18 @@
                 signal_ = clean_sine_value_ + dist(generator_);
                 message_.data = signal_;
 
-                RCLCPP_INFO(this->get_logger(), "Pubblicato: '%f'", message_.data);
+                //RCLCPP_INFO(this->get_logger(), "Pubblicato: '%f'", message_.data);
+                //RCLCPP_INFO(this->get_logger(), "Frequency: %f", frequency_);
+
                 publisher_->publish(message_);
 
-                time_ += 0.01;
+                time_ += dt_;
             }
 
-
+            double dt_ = 0.01;
             double time_ = 0.0;
-            double amplitude_ = 1.0;
-            double frequency_ = 5.0;
+            double amplitude_;
+            double frequency_;
             double pi_ = std::numbers::pi;
 
             double signal_;
